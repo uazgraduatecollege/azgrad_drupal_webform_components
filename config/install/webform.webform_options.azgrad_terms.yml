@@ -1,8 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
-id: uaz_certificate_plans
-label: 'UA Certificate Plans'
+id: azgrad_terms
+label: 'AZ Terms'
 category: ''
 likert: false
 options: ''

@@ -1,10 +1,10 @@
 {
-    "name": "uazgraduatecollege/azgrad_drupal_webform_elements",
+    "name": "uazgraduatecollege/azgrad_drupal_webform_components",
     "description": "Custom Grad College select options for academic plans, terms, campuses, etc",
     "type": "drupal-custom-module",
     "autoload": {
         "psr-4": {
-            "Uazgraduatecollege\\GradDrupalCommonFooter\\": "src/"
+            "Uazgraduatecollege\\AZGradDrupalWebformComponents\\": "src/"
         }
     },
     "authors": [
@@ -13,6 +13,6 @@
         }
     ],
     "require": {
-        "drupal/core": "^9.2.13"
+        "drupal/core": "^9.2"
     }
 }

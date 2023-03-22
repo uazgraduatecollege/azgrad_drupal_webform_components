@@ -2,10 +2,8 @@
 
 /**
  * @file
- * Contains azgrad_drupal_webform.module.
+ * Contains azgrad_drupal_webform_components.module.
  */
-
-use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
  * Not strictly related to this module, but the webform node module has
@@ -13,7 +11,7 @@ use Drupal\Core\Routing\RouteMatchInterface;
  * which we don't want. This function will run when this module is installed
  * changing that setting back to false.
  */
-function azgrad_drupal_webform_elements_install() {
+function azgrad_drupal_webform_components_install() {
   $config = \Drupal::configFactory()->getEditable('node.type.webform');
   $config->set('display_submitted', FALSE);
   $config->save();
@@ -22,11 +20,11 @@ function azgrad_drupal_webform_elements_install() {
 /**
  * @return Array of all active plans
  */
-function azgrad_drupal_webform_elements_webform_options_uaz_graduate_plans_alter(array &$options, array &$element) {
-  azgrad_drupal_webform_elements_get_options(
+function azgrad_drupal_webform_components_webform_options_azgrad_graduate_plans_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
     $options,
     'https://cloud.grad.arizona.edu/data/directory/simpleplans.json',
-    'uaz_graduate_plans',
+    'azgrad_graduate_plans',
     function(array $response) {
       $programs = [];
       foreach ($response as $next_plan) {
@@ -43,11 +41,11 @@ function azgrad_drupal_webform_elements_webform_options_uaz_graduate_plans_alter
 /**
  * @return Array of Accelerated Masters plans
  */
-function azgrad_drupal_webform_elements_webform_options_uaz_accelerated_masters_plans_alter(array &$options, array &$element) {
-  azgrad_drupal_webform_elements_get_options(
+function azgrad_drupal_webform_components_webform_options_azgrad_accelerated_masters_plans_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
     $options,
     'https://cloud.grad.arizona.edu/data/directory/simpleplans.json',
-    'uaz_accelerated_masters_plans',
+    'azgrad_accelerated_masters_plans',
     function(array $response) {
       $programs = [];
       foreach ($response as $next_plan) {
@@ -67,11 +65,11 @@ function azgrad_drupal_webform_elements_webform_options_uaz_accelerated_masters_
 /**
  * @return Array of doctoral plans
  */
-function azgrad_drupal_webform_elements_webform_options_uaz_doctoral_plans_alter(array &$options, array &$element) {
-  azgrad_drupal_webform_elements_get_options(
+function azgrad_drupal_webform_components_webform_options_azgrad_doctoral_plans_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
     $options,
     'https://cloud.grad.arizona.edu/data/directory/simpleplans.json',
-    'uaz_doctoral_plans',
+    'azgrad_doctoral_plans',
     function(array $response) {
       $programs = [];
       foreach ($response as $next_plan) {
@@ -90,11 +88,11 @@ function azgrad_drupal_webform_elements_webform_options_uaz_doctoral_plans_alter
 /**
  * @return Array of doctoral minors
  */
-function azgrad_drupal_webform_elements_webform_options_uaz_doctoral_minors_alter(array &$options, array &$element) {
-  azgrad_drupal_webform_elements_get_options(
+function azgrad_drupal_webform_components_webform_options_azgrad_doctoral_minors_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
     $options,
     'https://cloud.grad.arizona.edu/data/directory/simpleplans.json',
-    'uaz_doctoral_minors',
+    'azgrad_doctoral_minors',
     function(array $response) {
       $programs = [];
       foreach ($response as $next_plan) {
@@ -114,11 +112,11 @@ function azgrad_drupal_webform_elements_webform_options_uaz_doctoral_minors_alte
 /**
  * @return Array of degree-seeking plans not including AMPs, minors, or certificates
  */
-function azgrad_drupal_webform_elements_webform_options_uaz_degree_seeking_plans_alter(array &$options, array &$element) {
-  azgrad_drupal_webform_elements_get_options(
+function azgrad_drupal_webform_components_webform_options_azgrad_degree_seeking_plans_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
     $options,
     'https://cloud.grad.arizona.edu/data/directory/simpleplans.json',
-    'uaz_degree_seeking_plans',
+    'azgrad_degree_seeking_plans',
     function(array $response) {
       $programs = [];
       foreach ($response as $next_plan) {
@@ -140,11 +138,11 @@ function azgrad_drupal_webform_elements_webform_options_uaz_degree_seeking_plans
 /**
  * @return Array of Master's plans
  */
-function azgrad_drupal_webform_elements_webform_options_uaz_masters_plans_alter(array &$options, array &$element) {
-  azgrad_drupal_webform_elements_get_options(
+function azgrad_drupal_webform_components_webform_options_azgrad_masters_plans_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
     $options,
     'https://cloud.grad.arizona.edu/data/directory/simpleplans.json',
-    'uaz_masters_plans',
+    'azgrad_masters_plans',
     function(array $response) {
       $programs = [];
       foreach ($response as $next_plan) {
@@ -163,11 +161,11 @@ function azgrad_drupal_webform_elements_webform_options_uaz_masters_plans_alter(
 /**
  * @return Array of certificate plans
  */
-function azgrad_drupal_webform_elements_webform_options_uaz_certificate_plans_alter(array &$options, array &$element) {
-  azgrad_drupal_webform_elements_get_options(
+function azgrad_drupal_webform_components_webform_options_azgrad_certificate_plans_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
     $options,
     'https://cloud.grad.arizona.edu/data/directory/simpleplans.json',
-    'uaz_certificate_plans',
+    'azgrad_certificate_plans',
     function(array $response) {
       $programs = [];
       foreach ($response as $next_plan) {
@@ -186,11 +184,11 @@ function azgrad_drupal_webform_elements_webform_options_uaz_certificate_plans_al
 /**
  * @return Array of terms (semesters)
  */
-function azgrad_drupal_webform_elements_webform_options_uaz_terms_alter(array &$options, array &$element) {
-  azgrad_drupal_webform_elements_get_options(
+function azgrad_drupal_webform_components_webform_options_azgrad_terms_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
     $options,
     'https://cloud.grad.arizona.edu/data/directory/terms.json',
-    'uaz_terms',
+    'azgrad_terms',
     function(array $response) {
       $terms = [];
       foreach ($response as $next_term) {
@@ -209,11 +207,11 @@ function azgrad_drupal_webform_elements_webform_options_uaz_terms_alter(array &$
 /**
  * @return Array of curent and future terms (semesters)
  */
-function azgrad_drupal_webform_elements_webform_options_uaz_current_and_future_terms_alter(array &$options, array &$element) {
-  azgrad_drupal_webform_elements_get_options(
+function azgrad_drupal_webform_components_webform_options_azgrad_current_and_future_terms_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
     $options,
     'https://cloud.grad.arizona.edu/data/directory/terms.json',
-    'uaz_current_and_future_terms',
+    'azgrad_current_and_future_terms',
     function(array $response) {
       $terms = [];
       $now = time();
@@ -235,11 +233,11 @@ function azgrad_drupal_webform_elements_webform_options_uaz_current_and_future_t
 /**
  * @return Array of campuses
  */
-function azgrad_drupal_webform_elements_webform_options_uaz_campuses_alter(array &$options, array &$element) {
-  azgrad_drupal_webform_elements_get_options(
+function azgrad_drupal_webform_components_webform_options_azgrad_campuses_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
     $options,
     'https://cloud.grad.arizona.edu/data/directory/campuses.json',
-    'uaz_campuses',
+    'azgrad_campuses',
     function(array $response) {
       $campuses = [];
       foreach ($response as $next_campus) {
@@ -258,11 +256,11 @@ function azgrad_drupal_webform_elements_webform_options_uaz_campuses_alter(array
 /**
  * @return Array of campus locations
  */
-function azgrad_drupal_webform_elements_webform_options_uaz_locations_alter(array &$options, array &$element) {
-  azgrad_drupal_webform_elements_get_options(
+function azgrad_drupal_webform_components_webform_options_azgrad_locations_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
     $options,
     'https://cloud.grad.arizona.edu/data/directory/locations.json',
-    'uaz_locations',
+    'azgrad_locations',
     function(array $response) {
       $locations = [];
       foreach ($response as $next_location) {
@@ -281,7 +279,7 @@ function azgrad_drupal_webform_elements_webform_options_uaz_locations_alter(arra
 /**
  * @return JSON-decoded values from remote data source
  */
-function azgrad_drupal_webform_elements_get_options(array &$options, string $url, string $cache_key, Closure $filter_callback){
+function azgrad_drupal_webform_components_get_options(array &$options, string $url, string $cache_key, Closure $filter_callback){
   // Load cached options.
   if ($cache = \Drupal::cache()->get($cache_key)) {
     $options = $cache->data;

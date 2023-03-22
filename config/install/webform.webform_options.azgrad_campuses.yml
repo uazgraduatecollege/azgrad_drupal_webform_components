@@ -1,8 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
-id: uaz_degree_seeking_plans
-label: 'UA Degree Seeking Plans'
+id: azgrad_campuses
+label: 'AZ Campuses'
 category: ''
 likert: false
 options: ''

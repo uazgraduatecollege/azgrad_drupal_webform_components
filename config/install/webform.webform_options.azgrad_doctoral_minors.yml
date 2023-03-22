@@ -1,8 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
-id: uaz_locations
-label: 'UA Locations'
+id: azgrad_doctoral_minors
+label: 'AZ Doctoral Minors'
 category: ''
 likert: false
 options: ''

@@ -1,8 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
-id: uaz_accelerated_masters_plans
-label: 'UA Accelerated Masters Plans'
+id: azgrad_locations
+label: 'AZ Locations'
 category: ''
 likert: false
 options: ''
