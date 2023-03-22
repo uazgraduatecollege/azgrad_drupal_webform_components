@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: azgrad_accelerated_masters_plans
+label: 'AZ Accelerated Masters Programs'
+category: ''
+likert: false
+options: ''

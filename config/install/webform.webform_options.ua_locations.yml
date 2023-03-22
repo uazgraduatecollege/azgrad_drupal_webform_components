@@ -1,8 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: ua_locations
-label: 'UA Locations'
-category: ''
-likert: false
-options: ''

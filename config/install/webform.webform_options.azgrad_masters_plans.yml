@@ -1,8 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
-id: ua_campuses
-label: 'UA Campuses'
+id: azgrad_masters_plans
+label: 'AZ Masters Programs'
 category: ''
 likert: false
 options: ''

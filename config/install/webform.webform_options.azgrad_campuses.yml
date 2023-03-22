@@ -1,8 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
-id: ua_certificate_plans
-label: 'UA Certificate Plans'
+id: azgrad_campuses
+label: 'AZ Campuses'
 category: ''
 likert: false
 options: ''

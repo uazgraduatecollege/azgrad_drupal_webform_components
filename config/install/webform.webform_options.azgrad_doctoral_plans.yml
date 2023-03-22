@@ -1,8 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
-id: ua_doctoral_plans
-label: 'UA Doctoral Plans'
+id: azgrad_doctoral_plans
+label: 'AZ Doctoral Programs'
 category: ''
 likert: false
 options: ''

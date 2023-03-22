@@ -1,8 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
-id: ua_masters_plans
-label: 'UA Masters Plans'
+id: azgrad_graduate_plans
+label: 'AZ Graduate Programs'
 category: ''
 likert: false
 options: ''

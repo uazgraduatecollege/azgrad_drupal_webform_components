@@ -1,8 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
-id: ua_terms
-label: 'UA Terms'
+id: azgrad_locations
+label: 'AZ Locations'
 category: ''
 likert: false
 options: ''

@@ -1,0 +1,300 @@
+<?php
+
+/**
+ * @file
+ * Contains azgrad_drupal_webform_components.module.
+ */
+
+/**
+ * Not strictly related to this module, but the webform node module has
+ * been updated to make the author name automatically visible on the node,
+ * which we don't want. This function will run when this module is installed
+ * changing that setting back to false.
+ */
+function azgrad_drupal_webform_components_install() {
+  $config = \Drupal::configFactory()->getEditable('node.type.webform');
+  $config->set('display_submitted', FALSE);
+  $config->save();
+}
+
+/**
+ * @return Array of all active plans
+ */
+function azgrad_drupal_webform_components_webform_options_azgrad_graduate_plans_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
+    $options,
+    'https://cloud.grad.arizona.edu/data/directory/simpleplans.json',
+    'azgrad_graduate_plans',
+    function(array $response) {
+      $programs = [];
+      foreach ($response as $next_plan) {
+        $programs[$next_plan['gcAcadPlan']] = $next_plan['description'];
+      }
+      asort($programs);
+      return $programs;
+    }
+  );
+
+  return;
+}
+
+/**
+ * @return Array of Accelerated Masters plans
+ */
+function azgrad_drupal_webform_components_webform_options_azgrad_accelerated_masters_plans_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
+    $options,
+    'https://cloud.grad.arizona.edu/data/directory/simpleplans.json',
+    'azgrad_accelerated_masters_plans',
+    function(array $response) {
+      $programs = [];
+      foreach ($response as $next_plan) {
+        $is_amp = strpos($next_plan['description'], 'Accelerated Master') > 0;
+        if ($is_amp) {
+          $programs[$next_plan['gcAcadPlan']] = $next_plan['description'];
+        }
+      }
+      asort($programs);
+      return $programs;
+    }
+  );
+
+  return;
+}
+
+/**
+ * @return Array of doctoral plans
+ */
+function azgrad_drupal_webform_components_webform_options_azgrad_doctoral_plans_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
+    $options,
+    'https://cloud.grad.arizona.edu/data/directory/simpleplans.json',
+    'azgrad_doctoral_plans',
+    function(array $response) {
+      $programs = [];
+      foreach ($response as $next_plan) {
+        if ($next_plan['degreeType'] == 'Doctorate') {
+          $programs[$next_plan['gcAcadPlan']] = $next_plan['description'];
+        }
+      }
+      asort($programs);
+      return $programs;
+    }
+  );
+
+  return;
+}
+
+/**
+ * @return Array of doctoral minors
+ */
+function azgrad_drupal_webform_components_webform_options_azgrad_doctoral_minors_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
+    $options,
+    'https://cloud.grad.arizona.edu/data/directory/simpleplans.json',
+    'azgrad_doctoral_minors',
+    function(array $response) {
+      $programs = [];
+      foreach ($response as $next_plan) {
+        $is_minor = strpos($next_plan['acadPlan'], 'MING') > 0;
+        if ($is_minor) {
+          $programs[$next_plan['gcAcadPlan']] = $next_plan['description'];
+        }
+      }
+      asort($programs);
+      return $programs;
+    }
+  );
+
+  return;
+}
+
+/**
+ * @return Array of degree-seeking plans not including AMPs, minors, or certificates
+ */
+function azgrad_drupal_webform_components_webform_options_azgrad_degree_seeking_plans_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
+    $options,
+    'https://cloud.grad.arizona.edu/data/directory/simpleplans.json',
+    'azgrad_degree_seeking_plans',
+    function(array $response) {
+      $programs = [];
+      foreach ($response as $next_plan) {
+        $is_degree = strpos($next_plan['description'], 'Accelerated Master') === false
+          && strpos($next_plan['acadPlan'], 'MING') === false
+          && $next_plans['degreeType'] !== 'Certificate';
+        if ($is_degree) {
+          $programs[$next_plan['gcAcadPlan']] = $next_plan['description'];
+        }
+      }
+      asort($programs);
+      return $programs;
+    }
+  );
+
+  return;
+}
+
+/**
+ * @return Array of Master's plans
+ */
+function azgrad_drupal_webform_components_webform_options_azgrad_masters_plans_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
+    $options,
+    'https://cloud.grad.arizona.edu/data/directory/simpleplans.json',
+    'azgrad_masters_plans',
+    function(array $response) {
+      $programs = [];
+      foreach ($response as $next_plan) {
+        if ($next_plan['degreeType'] == 'Masters') {
+          $programs[$next_plan['gcAcadPlan']] = $next_plan['description'];
+        }
+      }
+      asort($programs);
+      return $programs;
+    }
+  );
+
+  return;
+}
+
+/**
+ * @return Array of certificate plans
+ */
+function azgrad_drupal_webform_components_webform_options_azgrad_certificate_plans_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
+    $options,
+    'https://cloud.grad.arizona.edu/data/directory/simpleplans.json',
+    'azgrad_certificate_plans',
+    function(array $response) {
+      $programs = [];
+      foreach ($response as $next_plan) {
+        if ($next_plan['degreeType'] == 'Certificate') {
+          $programs[$next_plan['gcAcadPlan']] = $next_plan['description'];
+        }
+      }
+      asort($programs);
+      return $programs;
+    }
+  );
+
+  return;
+}
+
+/**
+ * @return Array of terms (semesters)
+ */
+function azgrad_drupal_webform_components_webform_options_azgrad_terms_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
+    $options,
+    'https://cloud.grad.arizona.edu/data/directory/terms.json',
+    'azgrad_terms',
+    function(array $response) {
+      $terms = [];
+      foreach ($response as $next_term) {
+        if (!empty($next_term['term']) && $next_term['term'] != '1011') {
+          $terms[$next_term['term']] = $next_term['descr'];
+        }
+      }
+      ksort($terms, SORT_NUMERIC);
+      return $terms;
+    }
+  );
+
+  return;
+}
+
+/**
+ * @return Array of curent and future terms (semesters)
+ */
+function azgrad_drupal_webform_components_webform_options_azgrad_current_and_future_terms_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
+    $options,
+    'https://cloud.grad.arizona.edu/data/directory/terms.json',
+    'azgrad_current_and_future_terms',
+    function(array $response) {
+      $terms = [];
+      $now = time();
+
+      foreach ($response as $next_term) {
+        $term_end = strtotime($next_term['endDate']);
+        if (!empty($next_term['term']) && ($term_end >= $now)) {
+          $terms[$next_term['term']] = $next_term['descr'];
+        }
+      }
+      ksort($terms, SORT_NUMERIC);
+      return $terms;
+    }
+  );
+
+  return;
+}
+
+/**
+ * @return Array of campuses
+ */
+function azgrad_drupal_webform_components_webform_options_azgrad_campuses_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
+    $options,
+    'https://cloud.grad.arizona.edu/data/directory/campuses.json',
+    'azgrad_campuses',
+    function(array $response) {
+      $campuses = [];
+      foreach ($response as $next_campus) {
+        if (!empty($next_campus['campus']) && !empty($next_campus['descr'])) {
+          $campuses[$next_campus['campus']] = $next_campus['descr'];
+        }
+      }
+      asort($campuses);
+      return $campuses;
+    }
+  );
+
+  return;
+}
+
+/**
+ * @return Array of campus locations
+ */
+function azgrad_drupal_webform_components_webform_options_azgrad_locations_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
+    $options,
+    'https://cloud.grad.arizona.edu/data/directory/locations.json',
+    'azgrad_locations',
+    function(array $response) {
+      $locations = [];
+      foreach ($response as $next_location) {
+        if (!empty($next_location['location']) && !empty($next_location['descr'])) {
+          $locations[$next_location['location']] = $next_location['descr'];
+        }
+      }
+      asort($locations);
+      return $locations;
+    }
+  );
+
+  return;
+}
+
+/**
+ * @return JSON-decoded values from remote data source
+ */
+function azgrad_drupal_webform_components_get_options(array &$options, string $url, string $cache_key, Closure $filter_callback){
+  // Load cached options.
+  if ($cache = \Drupal::cache()->get($cache_key)) {
+    $options = $cache->data;
+    return;
+  }
+
+  $response = json_decode(file_get_contents($url), TRUE);
+
+  if (!$response) {
+    $response = [];
+  }
+
+  $filtered_response = $filter_callback($response);
+  $options = $filtered_response;
+  \Drupal::cache()->set($cache_key, $options);
+
+  return;
+}
