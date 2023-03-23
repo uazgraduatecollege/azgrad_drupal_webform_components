@@ -49,7 +49,7 @@ function azgrad_drupal_webform_components_webform_options_azgrad_accelerated_mas
     function(array $response) {
       $programs = [];
       foreach ($response as $next_plan) {
-        $is_amp = strpos($next_plan['description'], 'Accelerated Master') > 0;
+        $is_amp = substr($next_plan['acadPlan'], -3) == 'AMP';
         if ($is_amp) {
           $programs[$next_plan['gcAcadPlan']] = $next_plan['description'];
         }
@@ -96,7 +96,7 @@ function azgrad_drupal_webform_components_webform_options_azgrad_doctoral_minors
     function(array $response) {
       $programs = [];
       foreach ($response as $next_plan) {
-        $is_minor = strpos($next_plan['acadPlan'], 'MING') > 0;
+        $is_minor = substr($next_plan['acadPlan'], -4) == 'MING';
         if ($is_minor) {
           $programs[$next_plan['gcAcadPlan']] = $next_plan['description'];
         }
@@ -120,9 +120,9 @@ function azgrad_drupal_webform_components_webform_options_azgrad_degree_seeking_
     function(array $response) {
       $programs = [];
       foreach ($response as $next_plan) {
-        $is_degree = strpos($next_plan['description'], 'Accelerated Master') === false
-          && strpos($next_plan['acadPlan'], 'MING') === false
-          && strpos($next_plans['degreeType'], 'Certificate') === false;
+        $is_degree = substr($next_plan['acadPlan'], -3) !== 'AMP'
+          && substr($next_plan['acadPlan'], -4) !== 'MING'
+          && $next_plans['degree'] !== 'CERTG';
         if ($is_degree) {
           $programs[$next_plan['gcAcadPlan']] = $next_plan['description'];
         }
@@ -169,7 +169,7 @@ function azgrad_drupal_webform_components_webform_options_azgrad_certificate_pla
     function(array $response) {
       $programs = [];
       foreach ($response as $next_plan) {
-        if ($next_plan['degreeType'] == 'Certificate') {
+        if ($next_plans['degree'] == 'CERTG') {
           $programs[$next_plan['gcAcadPlan']] = $next_plan['description'];
         }
       }
