@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: azgrad_doctoral_minors
-label: 'AZ Doctoral Minors'
+label: 'AZ Plans - Doctoral Minors'
 category: ''
 likert: false
 options: ''

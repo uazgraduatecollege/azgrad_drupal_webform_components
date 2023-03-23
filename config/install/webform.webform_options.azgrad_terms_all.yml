@@ -1,8 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
-id: azgrad_graduate_plans
-label: 'AZ Graduate Programs'
+id: azgrad_terms_all
+label: 'AZ Terms - All Terms'
 category: ''
 likert: false
 options: ''
