@@ -122,7 +122,7 @@ function azgrad_drupal_webform_components_webform_options_azgrad_degree_seeking_
       foreach ($response as $next_plan) {
         $is_degree = substr($next_plan['acadPlan'], -3) !== 'AMP'
           && substr($next_plan['acadPlan'], -4) !== 'MING'
-          && $next_plans['degree'] !== 'CERTG';
+          && $next_plan['degree'] !== 'CERTG';
         if ($is_degree) {
           $programs[$next_plan['gcAcadPlan']] = $next_plan['description'];
         }
@@ -169,7 +169,7 @@ function azgrad_drupal_webform_components_webform_options_azgrad_certificate_pla
     function(array $response) {
       $programs = [];
       foreach ($response as $next_plan) {
-        if ($next_plans['degree'] == 'CERTG') {
+        if ($next_plan['degree'] == 'CERTG') {
           $programs[$next_plan['gcAcadPlan']] = $next_plan['description'];
         }
       }
