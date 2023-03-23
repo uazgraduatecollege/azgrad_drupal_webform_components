@@ -122,7 +122,7 @@ function azgrad_drupal_webform_components_webform_options_azgrad_degree_seeking_
       foreach ($response as $next_plan) {
         $is_degree = strpos($next_plan['description'], 'Accelerated Master') === false
           && strpos($next_plan['acadPlan'], 'MING') === false
-          && $next_plans['degreeType'] !== 'Certificate';
+          && strpos($next_plans['degreeType'], 'Certificate') === false;
         if ($is_degree) {
           $programs[$next_plan['gcAcadPlan']] = $next_plan['description'];
         }
