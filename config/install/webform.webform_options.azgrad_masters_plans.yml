@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: azgrad_masters_plans
-label: 'AZ Masters Programs'
+label: 'AZ Plans - Masters Programs'
 category: ''
 likert: false
 options: ''

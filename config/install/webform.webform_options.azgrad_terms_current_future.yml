@@ -1,8 +1,8 @@
 langcode: en
 status: true
 dependencies: {  }
-id: azgrad_current_and_future_terms
-label: 'AZ Current and Future Terms'
+id: azgrad_terms_current_future
+label: 'AZ Terms - Current and Future'
 category: ''
 likert: false
 options: ''

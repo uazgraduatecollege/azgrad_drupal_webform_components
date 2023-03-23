@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: azgrad_degree_seeking_plans
-label: 'AZ Degree Seeking Programs'
+label: 'AZ Plans - Degree Seeking Programs'
 category: ''
 likert: false
 options: ''

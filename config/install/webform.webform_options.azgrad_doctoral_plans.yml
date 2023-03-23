@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: azgrad_doctoral_plans
-label: 'AZ Doctoral Programs'
+label: 'AZ Plans - Doctoral Programs'
 category: ''
 likert: false
 options: ''

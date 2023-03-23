@@ -3,7 +3,7 @@
 
 Provides webform components, especially select options, from dynamic JSON sources.
 
-- AZ Graduate Programs
+- AZ All Graduate Programs
 - AZ Degree-Seeking Graduate Programs
 - AZ Doctoral Programs
 - AZ Doctoral Minors
