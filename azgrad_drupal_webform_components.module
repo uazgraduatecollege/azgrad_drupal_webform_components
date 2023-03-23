@@ -112,6 +112,33 @@ function azgrad_drupal_webform_components_webform_options_azgrad_degree_seeking_
 }
 
 /**
+ * @return Array of degree-seeking plans - not including AMPs, minors, certificates, or NDS plans
+ */
+function azgrad_drupal_webform_components_webform_options_azgrad_degree_seeking_non_amps_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
+    $options,
+    'https://cloud.grad.arizona.edu/data/directory/simpleplans.json',
+    'azgrad_degree_seeking_non_amps',
+    function(array $response) {
+      $programs = [];
+      foreach ($response as $next_plan) {
+        $is_degree = $next_plan['degree'] !== 'CERTG'
+          && substr($next_plan['acadPlan'], -4) !== 'MING'
+          && substr($next_plan['gcAcadPlan'], -3) !== 'AMP'
+          && $next_plan['acadPlan'] !== 'NDSNDG';
+        if ($is_degree) {
+          $programs[$next_plan['gcAcadPlan']] = $next_plan['description'];
+        }
+      }
+      asort($programs);
+      return $programs;
+    }
+  );
+
+  return;
+}
+
+/**
  * @return Array of doctoral minors
  */
 function azgrad_drupal_webform_components_webform_options_azgrad_doctoral_minors_alter(array &$options, array &$element) {
@@ -170,6 +197,31 @@ function azgrad_drupal_webform_components_webform_options_azgrad_masters_plans_a
       $programs = [];
       foreach ($response as $next_plan) {
         if ($next_plan['degreeType'] == 'Masters') {
+          $programs[$next_plan['gcAcadPlan']] = $next_plan['description'];
+        }
+      }
+      asort($programs);
+      return $programs;
+    }
+  );
+
+  return;
+}
+
+/**
+ * @return Array of Master's plans, no AMPs
+ */
+function azgrad_drupal_webform_components_webform_options_azgrad_masters_non_amps_alter(array &$options, array &$element) {
+  azgrad_drupal_webform_components_get_options(
+    $options,
+    'https://cloud.grad.arizona.edu/data/directory/simpleplans.json',
+    'azgrad_masters_non_amps',
+    function(array $response) {
+      $programs = [];
+      foreach ($response as $next_plan) {
+        $is_nonamp = $next_plans['degreeType'] == 'Masters'
+          && substr($next_plan['gcAcadPlan'], -3) !== 'AMP';
+        if ($is_nonamp) {
           $programs[$next_plan['gcAcadPlan']] = $next_plan['description'];
         }
       }
