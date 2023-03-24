@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall functions for azgrad_drupal_webform_components module
+ */
+
+/**
+ * Generic update routine for new webform configs
+ */
+function _azgrad_drupal_webform_components_update_config($configsNames) {
+  $config_path = drupal_get_path('module', 'azgrad_drupal_webform_components') . '/config/install';
+  $source = new \Drupal\Core\Config\FileStorage($config_path);
+  $config_storage = \Drupal::service('config.storage');
+  $config_factory = \Drupal::configFactory();
+  $uuid_service = \Drupal::service('uuid');
+
+  foreach ($configsNames as $name) {
+    $config_storage->write($name, $source->read($name));
+    $config_factory->getEditable($name)->set('uuid', $uuid_service->generate())->save();
+  }
+}
+
+/**
+ * Add configs for new non-AMP select options
+ */
+function azgrad_drupal_webform_components_update_10300() {
+  _azgrad_drupal_webform_components_update_config(
+    [
+      'webform.webform_options.azgrad_degree_seeking_non_amps',
+      'webform.webform_options.azgrad_masters_non_amps',
+    ]
+  );
+
+  return 'Added new configurations for azgrad_drupal_webform_components';
+}
+
