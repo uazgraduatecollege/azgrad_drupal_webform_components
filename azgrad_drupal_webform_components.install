@@ -7,7 +7,7 @@
 
 function _azgrad_drupal_webform_components_update_config($configsNames) {
   $config_path = drupal_get_path('module', 'azgrad_drupal_webform_components') . '/config/install';
-  $source = new FileStorage($config_path);
+  $source = new \Drupal\Core\Config\FileStorage($config_path);
   $config_storage = \Drupal::service('config.storage');
   $config_factory = \Drupal::configFactory();
   $uuid_service = \Drupal::service('uuid');
