@@ -219,7 +219,7 @@ function azgrad_drupal_webform_components_webform_options_azgrad_masters_non_amp
     function(array $response) {
       $programs = [];
       foreach ($response as $next_plan) {
-        $is_nonamp = $next_plans['degreeType'] == 'Masters'
+        $is_nonamp = $next_plan['degreeType'] == 'Masters'
           && substr($next_plan['gcAcadPlan'], -3) !== 'AMP';
         if ($is_nonamp) {
           $programs[$next_plan['gcAcadPlan']] = $next_plan['description'];
