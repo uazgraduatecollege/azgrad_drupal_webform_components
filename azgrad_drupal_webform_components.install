@@ -5,6 +5,9 @@
  * Install, update, and uninstall functions for azgrad_drupal_webform_components module
  */
 
+/**
+ * Generic update routine for new webform configs
+ */
 function _azgrad_drupal_webform_components_update_config($configsNames) {
   $config_path = drupal_get_path('module', 'azgrad_drupal_webform_components') . '/config/install';
   $source = new \Drupal\Core\Config\FileStorage($config_path);
@@ -18,6 +21,9 @@ function _azgrad_drupal_webform_components_update_config($configsNames) {
   }
 }
 
+/**
+ * Add configs for new non-AMP select options
+ */
 function azgrad_drupal_webform_components_update_10300() {
   _azgrad_drupal_webform_components_update_config(
     [
