@@ -5,9 +5,11 @@ Provides webform components, especially select options, from dynamic JSON source
 
 - AZ All Graduate Programs
 - AZ Degree-Seeking Graduate Programs
+- AZ Degree-Seeking, Non-AMPs
 - AZ Doctoral Programs
 - AZ Doctoral Minors
 - AZ Masters Programs
+- AZ Masters, Non-AMPs
 - AZ Accelerated Masters Programs
 - AZ Certificate Programs
 - AZ Terms
