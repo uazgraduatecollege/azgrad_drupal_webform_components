@@ -1,5 +1,8 @@
 # AZ Grad College Webform Components
-## For Quickstart 2 / Drupal 9+
+
+## For AZ Quickstart
+
+Compatible with AZ Quickstart 2 and 3, and Drupal 9 - 11
 
 Provides webform components, especially select options, from dynamic JSON sources.
 
@@ -19,7 +22,7 @@ Provides webform components, especially select options, from dynamic JSON source
 
 ## Installation
 
-Assuming you have a Quickstart 2 site's git repository cloned, edit your site's 
+Assuming you have a Quickstart 2 site's git repository cloned, edit your site's
 `composer.json` file.
 
 Add the following to the `repositories` section:
@@ -32,7 +35,7 @@ Add the following to the `repositories` section:
   ```
 And add the following to the `require` section:
 
-```json 
+```json
   {
     "uazgraduatecollege/azgrad_drupal_webform_components": "dev-main"
   }
@@ -43,15 +46,15 @@ Commit your changes and re-initialize you site.
 If using a site cloned from Pantheon, delete your `composer.lock` file before
 committing your changes and then `git push` back up to the pantheon remote.
 
-## Configuration 
+## Configuration
 
-Enable the by navigating to your site's `Admininistration => Extend` and clicking 
+Enable the by navigating to your site's `Admininistration => Extend` and clicking
 the AZ Grad Webform Components module.
 
 Alternatively, enable using terminus:
 
 ```sh
-$ terminus remote:drush en azgrad_drupal_webform_components 
+$ terminus remote:drush en azgrad_drupal_webform_components
 ```
 
 The components provided by this module should now be ready to use in Drupal webforms.
