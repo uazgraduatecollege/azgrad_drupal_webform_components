@@ -2,7 +2,7 @@ name: 'AZ Grad Webform Components'
 type: module
 description: 'Grad College Custom Webform Components for AZ Quickstart'
 core_version_requirement: ^10 || ^11
-package: UA Grad College - Custom
+package: 'UA Graduate College - Custom'
 dependencies:
   - drupal:webform
   - drupal:webform_options_custom
