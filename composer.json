@@ -2,6 +2,9 @@
     "name": "uazgraduatecollege/azgrad_drupal_webform_components",
     "description": "Custom Grad College select options for academic plans, terms, campuses, etc",
     "type": "drupal-custom-module",
+    "require": {
+        "drupal/core": "^10 || ^11"
+    },
     "autoload": {
         "psr-4": {
             "Uazgraduatecollege\\AZGradDrupalWebformComponents\\": "src/"
@@ -11,8 +14,5 @@
         {
             "name": "UArizona Graduate College IT"
         }
-    ],
-    "require": {
-        "drupal/core": "^9 || ^10 || ^11"
-    }
+    ]
 }
